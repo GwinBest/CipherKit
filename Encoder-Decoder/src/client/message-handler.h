@@ -8,6 +8,7 @@
 #include"../chipers/gronsfeld/gronsfeld.h"
 #include"../chipers/caesar/caesar.h"
 #include"../language/language.h"
+#include"../chipers/atbash/atbash.h"
 
 
 
