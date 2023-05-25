@@ -21,7 +21,7 @@ void gronsfeldCipher(const char* stringToEncode, char* encodedString, const unsi
 				encodedString[stringToEncodeLetterPosition] = stringToEncode[stringToEncodeLetterPosition];
 				break;
 			}
-			else if (letterPositionInAlphabet > keyDigit)
+			else if (letterPositionInAlphabet >= keyDigit)
 			{
 				encodedString[stringToEncodeLetterPosition] = alphabet[letterPositionInAlphabet - keyDigit].english;
 				break;
