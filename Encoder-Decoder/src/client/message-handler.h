@@ -9,6 +9,7 @@
 #include"../chipers/caesar/caesar.h"
 #include"../language/language.h"
 #include"../chipers/atbash/atbash.h"
+#include"../chipers/railfence/railfence.h"
 
 
 

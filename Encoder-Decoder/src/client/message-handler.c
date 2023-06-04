@@ -29,7 +29,7 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 			lettersToLower(stringToEncode);
 
 			int selectedCipher = SendMessage(hComboBoxSelectCipher, CB_GETCURSEL, NULL, NULL);
-			BOOL isEncodeMode = SendMessageW(hComboBoxSelectMode, CB_GETCURSEL, NULL, NULL);
+			BOOL isEncodeMode = SendMessage(hComboBoxSelectMode, CB_GETCURSEL, NULL, NULL);
 
 			switch (selectedCipher)
 			{
@@ -80,6 +80,15 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 				atbashCipher(stringToEncode, encodedString);
 				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
 				break;
+			}
+			case COMBO_BOX_RAILFANCE_SELECTED:
+			{
+				if (isEncodeMode)
+					railfenceCipher(stringToEncode, encodedString, convertedToIntKey, ENCODE);
+				else
+					railfenceCipher(stringToEncode, encodedString, convertedToIntKey, DECODE);
+
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
 			}
 			default:
 			{
