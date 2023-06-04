@@ -32,7 +32,7 @@
 #define CHECK_BOX_POSITION_X_RATE                     1.24
 #define CHECK_BOX_POSITION_Y_RATE                     7.18
 #define TEXT_BOX_FOR_KEY_MAX_HEIGHT                   30
-#define TEXT_BOX_FOR_KEY_WIDTH_RATE                   7.13
+#define TEXT_BOX_FOR_KEY_WIDTH_RATE                   5.55
 #define TEXT_BOX_FOR_KEY_HEIGHT_RATE                  21.56
 #define TEXT_BOX_FOR_KEY_X_POSITION_RATE              29.45
 #define TEXT_BOX_FOR_KEY_Y_POSITION_RATE              12.94

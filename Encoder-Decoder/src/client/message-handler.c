@@ -81,14 +81,21 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				break;
 			}
-			case COMBO_BOX_RAILFANCE_SELECTED:
+			case COMBO_BOX_RAILFENCE_SELECTED:
 			{
-				if (isEncodeMode)
-					railfenceCipher(plainString, cipherString, convertedToIntKey, ENCODE);
-				else
-					railfenceCipher(plainString, cipherString, convertedToIntKey, DECODE);
+				if (convertedToIntKey > 0)
+				{
+					if (isEncodeMode)
+						railfenceCipher(plainString, cipherString, convertedToIntKey, ENCODE);
+					else
+						railfenceCipher(plainString, cipherString, convertedToIntKey, DECODE);
 
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
+					SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
+				}
+				else
+					MessageBox(NULL, L"Wrong input. Inputed key must be in range >0", L"Warning", MB_OK | MB_ICONWARNING);
+				break;
+
 			}
 			default:
 			{
@@ -107,17 +114,26 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 				int selectedItem = SendMessage(hComboBoxSelectCipher, CB_GETCURSEL, NULL, NULL);
 				if (selectedItem == COMBO_BOX_MORSE_SELECTED || selectedItem == COMBO_BOX_ATBASH_SELECTED)
 				{
-					EnableWindow(hCheckBox, TRUE);                                         // enable checkbox
-					EnableWindow(hTextBoxForKey, FALSE);                                  // disable text box that used for key
-					SendMessage(hTextBoxForKey, WM_SETTEXT, NULL, L"Enter the key...");  /* set the "Enter the key..." text that used as placeholder when morse cipher selected
-																							because when textbox is disabled the placeholder is diabled as well*/
+					EnableWindow(hCheckBox, TRUE);																// enable checkbox
+					EnableWindow(hTextBoxForKey, FALSE);												       // disable text box that used for key
+					SendMessage(hTextBoxForKey, WM_SETTEXT, NULL, L"Enter the key...");						  /* set the "Enter the key..." text that used as placeholder when morse cipher selected
+																							                    because when textbox is disabled the placeholder is diabled as well*/
+				}
+				else if (selectedItem == COMBO_BOX_RAILFENCE_SELECTED)
+				{
+					EnableWindow(hCheckBox, FALSE);                                                                                // disable the checkbox
+					SendMessage(hCheckBox, BM_SETCHECK, BST_UNCHECKED, NULL);                                                     // uncheck the checkbox
+					SendMessage(hTextBoxForKey, WM_SETTEXT, NULL, NULL);													     // remove the "Enter the key..." text that used as placeholder when morse cipher selected
+					SendMessage(hTextBoxForKey, EM_SETCUEBANNER, (WPARAM)FALSE, (LPARAM)L"Enter the number of rails...");       // set "Enter the number of rails..." placeholder 
+					EnableWindow(hTextBoxForKey, TRUE);
 				}
 				else
 				{
-					EnableWindow(hCheckBox, FALSE);                                 // disable the checkbox
-					SendMessage(hCheckBox, BM_SETCHECK, BST_UNCHECKED, NULL);      // uncheck the checkbox
-					SendMessage(hTextBoxForKey, WM_SETTEXT, NULL, NULL);          // remove the "Enter the key..." text that used as placeholder when morse cipher selected
-					EnableWindow(hTextBoxForKey, TRUE);                          // enable text box that used for key 
+					EnableWindow(hCheckBox, FALSE);																				// disable the checkbox
+					SendMessage(hCheckBox, BM_SETCHECK, BST_UNCHECKED, NULL);                                                  // uncheck the checkbox
+					SendMessage(hTextBoxForKey, WM_SETTEXT, NULL, NULL);                                                      // remove the "Enter the key..." text that used as placeholder when morse cipher selected
+					SendMessage(hTextBoxForKey, EM_SETCUEBANNER, (WPARAM)FALSE, (LPARAM)L"Enter the key...");			     // set "Enter the key..." placeholder 
+					EnableWindow(hTextBoxForKey, TRUE);                                                                     // enable text box that used for key 
 				}
 			}
 			break;
