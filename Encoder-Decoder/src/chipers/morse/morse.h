@@ -23,7 +23,7 @@ typedef union
 * DECODE - 0,
 * ENCODE - 1
 */
-void morseCipher(const char* stringToEncode, char* encodedString, const unsigned mode);
+void morseCipher(const char* plainString, char* cipherString, const unsigned mode);
 void decode(char* decodedString, const int letterPositionInMorseAlphabet, int* decodedStringPosition);
-void encode(char* encodedString, const int letterPositionInEnglishAlphabet, int* encodedStringLetterPosition);
-void morsePlaySound(const char* encodedString);
+void encode(char* cipherString, const int letterPositionInEnglishAlphabet, int* cipherStringLetterPosition);
+void morsePlaySound(const char* cipherString);

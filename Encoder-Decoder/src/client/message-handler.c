@@ -23,10 +23,10 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 			int convertedToIntKey = atoi(inputedKey);                  //we need to convert inputed key to integer
 
 			int sizeOfString = GetWindowTextLengthW(hTextBox) + 1;
-			char* stringToEncode = (char*)malloc(sizeOfString);
-			char* encodedString = (char*)malloc(sizeOfString * MAX_LENGHT_OF_MORSE_SYMBOL);
-			GetWindowTextA(hTextBox, stringToEncode, sizeOfString);
-			lettersToLower(stringToEncode);
+			char* plainString = (char*)malloc(sizeOfString);
+			char* cipherString = (char*)malloc(sizeOfString * MAX_LENGHT_OF_MORSE_SYMBOL);
+			GetWindowTextA(hTextBox, plainString, sizeOfString);
+			lettersToLower(plainString);
 
 			int selectedCipher = SendMessage(hComboBoxSelectCipher, CB_GETCURSEL, NULL, NULL);
 			BOOL isEncodeMode = SendMessage(hComboBoxSelectMode, CB_GETCURSEL, NULL, NULL);
@@ -37,26 +37,26 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 			{
 				if (isEncodeMode)
 				{
-					morseCipher(stringToEncode, encodedString, ENCODE);
+					morseCipher(plainString, cipherString, ENCODE);
 					if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED)
-						morsePlaySound(encodedString);
+						morsePlaySound(cipherString);
 				}
 				else
 				{
-					morseCipher(stringToEncode, encodedString, DECODE);
+					morseCipher(plainString, cipherString, DECODE);
 					if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED)
-						morsePlaySound(stringToEncode);
+						morsePlaySound(plainString);
 				}
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				break;
 			}
 			case COMBO_BOX_GRONDFELD_SELECTED:
 			{
 				if (isEncodeMode)
-					gronsfeldCipher(stringToEncode, encodedString, convertedToIntKey, ENCODE);
+					gronsfeldCipher(plainString, cipherString, convertedToIntKey, ENCODE);
 				else
-					gronsfeldCipher(stringToEncode, encodedString, convertedToIntKey, DECODE);
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
+					gronsfeldCipher(plainString, cipherString, convertedToIntKey, DECODE);
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				break;
 			}
 			case COMBO_BOX_CAESAR_SELECTED:
@@ -68,27 +68,27 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 				}
 
 				if (isEncodeMode)
-					caesarCipher(stringToEncode, encodedString, convertedToIntKey, ENCODE);
+					caesarCipher(plainString, cipherString, convertedToIntKey, ENCODE);
 				else
-					caesarCipher(stringToEncode, encodedString, convertedToIntKey, DECODE);
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
+					caesarCipher(plainString, cipherString, convertedToIntKey, DECODE);
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				break;
 
 			}
 			case COMBO_BOX_ATBASH_SELECTED:
 			{
-				atbashCipher(stringToEncode, encodedString);
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
+				atbashCipher(plainString, cipherString);
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				break;
 			}
 			case COMBO_BOX_RAILFANCE_SELECTED:
 			{
 				if (isEncodeMode)
-					railfenceCipher(stringToEncode, encodedString, convertedToIntKey, ENCODE);
+					railfenceCipher(plainString, cipherString, convertedToIntKey, ENCODE);
 				else
-					railfenceCipher(stringToEncode, encodedString, convertedToIntKey, DECODE);
+					railfenceCipher(plainString, cipherString, convertedToIntKey, DECODE);
 
-				SendMessageA(hStaticBox, WM_SETTEXT, NULL, encodedString);
+				SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 			}
 			default:
 			{
@@ -96,8 +96,8 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 			}
 			}
 			free(inputedKey);
-			free(encodedString);
-			free(stringToEncode);
+			free(cipherString);
+			free(plainString);
 			break;
 		}
 		case COMBO_BOX_CIPHER_SELECT:

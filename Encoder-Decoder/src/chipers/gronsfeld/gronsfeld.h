@@ -12,4 +12,4 @@
 * DECODE - 0
 * ENCODE - 1
 */
-void gronsfeldCipher(const char* stringToEncode, char* encodedString, const unsigned key, const unsigned mode);
+void gronsfeldCipher(const char* plainString, char* cipherString, const unsigned key, const unsigned mode);

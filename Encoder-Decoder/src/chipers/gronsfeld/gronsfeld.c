@@ -1,16 +1,16 @@
 #include "gronsfeld.h"
 
-void gronsfeldCipher(const char* stringToEncode, char* encodedString, const unsigned key, const unsigned mode)
+void gronsfeldCipher(const char* plainString, char* cipherString, const unsigned key, const unsigned mode)
 {
 	int keyLength = findKeyLength(key);
 	int currentDigit = 1;
 
-	size_t stringToEncodeLetterPosition = 0;
-	while (stringToEncode[stringToEncodeLetterPosition] != '\0')
+	size_t plainStringLetterPosition = 0;
+	while (plainString[plainStringLetterPosition] != '\0')
 	{
 		int keyDigit = findKeyDigit(key, keyLength, &currentDigit);
 
-		int letterPositionInAlphabet = findLetterPositionInEnglishAlphabet(stringToEncode[stringToEncodeLetterPosition]);
+		int letterPositionInAlphabet = findLetterPositionInEnglishAlphabet(plainString[plainStringLetterPosition]);
 
 		switch (mode)
 		{
@@ -18,30 +18,30 @@ void gronsfeldCipher(const char* stringToEncode, char* encodedString, const unsi
 		{
 			if (letterPositionInAlphabet == NOT_FOUNDED || letterPositionInAlphabet >= ALPHABET_LENGHT)
 			{
-				encodedString[stringToEncodeLetterPosition] = stringToEncode[stringToEncodeLetterPosition];
+				cipherString[plainStringLetterPosition] = plainString[plainStringLetterPosition];
 				break;
 			}
 			else if (letterPositionInAlphabet >= keyDigit)
 			{
-				encodedString[stringToEncodeLetterPosition] = alphabet[letterPositionInAlphabet - keyDigit].english;
+				cipherString[plainStringLetterPosition] = alphabet[letterPositionInAlphabet - keyDigit].english;
 				break;
 			}
 			else
-				encodedString[stringToEncodeLetterPosition] = alphabet[ALPHABET_LENGHT - (keyDigit - letterPositionInAlphabet)].english;
+				cipherString[plainStringLetterPosition] = alphabet[ALPHABET_LENGHT - (keyDigit - letterPositionInAlphabet)].english;
 			break;
 		}
 		case ENCODE:
 		{
 			if (letterPositionInAlphabet != NOT_FOUNDED && letterPositionInAlphabet < ALPHABET_LENGHT)
-				encodedString[stringToEncodeLetterPosition] = alphabet[(letterPositionInAlphabet + keyDigit) % ALPHABET_LENGHT].english;
+				cipherString[plainStringLetterPosition] = alphabet[(letterPositionInAlphabet + keyDigit) % ALPHABET_LENGHT].english;
 			else
-				encodedString[stringToEncodeLetterPosition] = stringToEncode[stringToEncodeLetterPosition];
+				cipherString[plainStringLetterPosition] = plainString[plainStringLetterPosition];
 			break;
 		}
 		default:
 			break;
 		}
-		stringToEncodeLetterPosition++;
+		plainStringLetterPosition++;
 	}
-	encodedString[stringToEncodeLetterPosition] = '\0';
+	cipherString[plainStringLetterPosition] = '\0';
 }

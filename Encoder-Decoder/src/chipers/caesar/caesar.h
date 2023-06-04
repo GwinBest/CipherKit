@@ -7,4 +7,4 @@
 * DECODE - 0
 * ENCODE - 1
 */
-void caesarCipher(const char* stringToEncode, char* encodedString, int key, int mode);
+void caesarCipher(const char* plainString, char* cipherString, int key, int mode);
