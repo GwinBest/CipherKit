@@ -93,9 +93,9 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
 					SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
 				}
 				else
-					MessageBox(NULL, L"Wrong input. Inputed key must be in range >0", L"Warning", MB_OK | MB_ICONWARNING);
-				break;
+					MessageBox(NULL, L"Wrong input. Inputed key must be > 0", L"Warning", MB_OK | MB_ICONWARNING);
 
+				break;
 			}
 			default:
 			{
