@@ -55,8 +55,6 @@ void CreateControls(HWND hWnd)
 	SendMessage(hComboBoxSelectCipher, CB_ADDSTRING, NULL, L"Caesar");
 	SendMessage(hComboBoxSelectCipher, CB_ADDSTRING, NULL, L"Atbash");
 	SendMessage(hComboBoxSelectCipher, CB_ADDSTRING, NULL, L"Railfence");
-	/*SendMessage(hComboBoxSelectCipher, CB_ADDSTRING, NULL, L"Baconian");
-	SendMessage(hComboBoxSelectCipher, CB_ADDSTRING, NULL, L"Vigenere");*/
 	SendMessage(hComboBoxSelectCipher, CB_SETCURSEL, COMBO_BOX_MORSE_SELECTED, NULL);
 
 	hComboBoxSelectMode = CreateWindowEx(
