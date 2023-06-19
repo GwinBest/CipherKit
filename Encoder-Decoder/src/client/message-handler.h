@@ -1,15 +1,15 @@
 #pragma once
 
-#include"gui/window-controls.h"
-#include"gui/main-window.h"
+#include"../chipers/atbash/atbash.h"
 #include"../bool.h"
+#include"../chipers/caesar/caesar.h"
+#include"../chipers/gronsfeld/gronsfeld.h"
+#include"../language/language.h"
+#include"gui/main-window.h"
 #include"../chipers/morse/morse.h"
 #include"../resource/resource.h"
-#include"../chipers/gronsfeld/gronsfeld.h"
-#include"../chipers/caesar/caesar.h"
-#include"../language/language.h"
-#include"../chipers/atbash/atbash.h"
 #include"../chipers/railfence/railfence.h"
+#include"gui/window-controls.h"
 
 
 
