@@ -1,7 +1,7 @@
 #pragma once
 
-#include<CommCtrl.h>
 #include<Windows.h>
+#include <CommCtrl.h>
 
 #include"../../mode-settings.h"
 

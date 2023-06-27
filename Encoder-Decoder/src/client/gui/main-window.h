@@ -3,9 +3,8 @@
 name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
 processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
-
-#include<CommCtrl.h>
-#include<Windows.h>
+#include <Windows.h>
+#include <CommCtrl.h>
 
 #define MAIN_WINDOW_MIN_WIDTH    1150
 #define MAIN_WINDOW_MIN_HEIGHT   550
