@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b8efa32c-ce18-4716-900a-53468e660ca0}</ProjectGuid>
-    <RootNamespace>EncoderDecoder</RootNamespace>
+    <ProjectGuid>{dfd2b09a-27f3-4446-87ac-2393840080e1}</ProjectGuid>
+    <RootNamespace>CipherKit</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,8 +81,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -100,8 +100,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,8 +115,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,10 +134,23 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceFileOutput>MultiplyDefinedSymbolOnly</ForceFileOutput>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\chipers\atbash\atbash.c" />
+    <ClCompile Include="src\chipers\caesar\caesar.c" />
+    <ClCompile Include="src\chipers\gronsfeld\gronsfeld.c" />
+    <ClCompile Include="src\chipers\morse\morse.c" />
+    <ClCompile Include="src\chipers\railfence\railfence.c" />
+    <ClCompile Include="src\client\gui\main-window.c" />
+    <ClCompile Include="src\client\gui\window-controls.c" />
+    <ClCompile Include="src\client\message-handler.c" />
+    <ClCompile Include="src\key\key.c" />
+    <ClCompile Include="src\language\language.c" />
+    <ClCompile Include="src\main.c" />
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bool.h" />
     <ClInclude Include="src\chipers\atbash\atbash.h" />
@@ -154,53 +167,16 @@
     <ClInclude Include="src\resource\resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\chipers\atbash\atbash.c" />
-    <ClCompile Include="src\chipers\caesar\caesar.c" />
-    <ClCompile Include="src\chipers\gronsfeld\gronsfeld.c" />
-    <ClCompile Include="src\chipers\morse\morse.c" />
-    <ClCompile Include="src\chipers\railfence\railfence.c" />
-    <ClCompile Include="src\client\gui\main-window.c" />
-    <ClCompile Include="src\client\gui\window-controls.c" />
-    <ClCompile Include="src\client\message-handler.c" />
-    <ClCompile Include="src\key\key.c" />
-    <ClCompile Include="src\language\language.c" />
-    <ClCompile Include="src\main.c" />
+    <Media Include="resources\dash.wav" />
+    <Media Include="resources\dot.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="dash.wav" />
-    <Media Include="dot.wav" />
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="x64\Debug\Encoder-Decoder.log" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="x64\Debug\Encoder-Decoder.tlog\CL.command.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\CL.read.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\CL.write.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\Encoder-Decoder.lastbuildstate" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link-cvtres.read.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link-cvtres.write.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link-rc.read.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link-rc.write.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link.command.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link.read.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link.read.2.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\link.write.1.tlog" />
-    <None Include="x64\Debug\Encoder-Decoder.tlog\unsuccessfulbuild" />
-    <None Include="x64\Debug\vc143.idb" />
-    <None Include="x64\Debug\vc143.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="x64\Debug\atbash.obj" />
-    <Object Include="x64\Debug\caesar.obj" />
-    <Object Include="x64\Debug\gronsfeld.obj" />
-    <Object Include="x64\Debug\key.obj" />
-    <Object Include="x64\Debug\language.obj" />
-    <Object Include="x64\Debug\main-window.obj" />
-    <Object Include="x64\Debug\main.obj" />
-    <Object Include="x64\Debug\message-handler.obj" />
-    <Object Include="x64\Debug\morse.obj" />
-    <Object Include="x64\Debug\window-controls.obj" />
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
