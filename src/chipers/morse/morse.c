@@ -32,24 +32,28 @@ void morseCipher(const char* plainString, char* cipherString, const unsigned mod
 
 void morsePlaySound(const char* cipherString)
 {
+    char* threadCipherString = strdup(cipherString);
+
     size_t position = 0;
-    while (cipherString[position] != '\0')
+    while (threadCipherString[position] != '\0')
     {
-        if (cipherString[position] == '.')
+        if (threadCipherString[position] == '.')
         {
             PlaySound(L"./resources/dot.wav", 0, SND_SYNC);
         }
-        else if (cipherString[position] == '-')
+        else if (threadCipherString[position] == '-')
         {
             PlaySound(L"./resources/dash.wav", 0, SND_SYNC);
         }
-        else if (cipherString[position] == ' ' && cipherString[position + 1] == ' ')
+        else if (threadCipherString[position] == ' ' && threadCipherString[position + 1] == ' ')
             SILENCE_BETWEEN_WORDS;
         else
             SILENCE_BETWEEN_LETTERS;
 
         position++;
     }
+
+    free(threadCipherString);
 }
 
 void decode(char* decodedString, const int letterPositionInMorseAlphabet, int* decodedStringPosition)

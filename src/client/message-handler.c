@@ -1,5 +1,7 @@
 #include"message-handler.h"
 
+#include <threads.h>
+
 LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (iMsg)
@@ -35,17 +37,23 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
             {
             case COMBO_BOX_MORSE_SELECTED:
             {
+                thrd_t morseThread = { 0 };
+
                 if (isEncodeMode)
                 {
                     morseCipher(plainString, cipherString, ENCODE);
-                    if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED)
-                        morsePlaySound(cipherString);
+                    if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED) {
+                        thrd_create(&morseThread, &morsePlaySound, cipherString);
+                        thrd_detach(morseThread);
+                    }
                 }
                 else
                 {
                     morseCipher(plainString, cipherString, DECODE);
-                    if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED)
-                        morsePlaySound(plainString);
+                    if (SendMessage(hCheckBox, BM_GETCHECK, NULL, NULL) == BST_CHECKED) {
+                        thrd_create(&morseThread, &morsePlaySound, plainString);
+                        thrd_detach(morseThread);
+                    }
                 }
                 SendMessageA(hStaticBox, WM_SETTEXT, NULL, cipherString);
                 break;
@@ -102,6 +110,7 @@ LRESULT CALLBACK fnMessageProcessor(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM 
                 break;
             }
             }
+
             free(inputedKey);
             free(cipherString);
             free(plainString);
