@@ -9,7 +9,7 @@ Desktop encoder/decoder for the most popular ciphers — an easy, tool to experi
 ## Table of contents
 - [What is CipherKit?](#what-is-cipherkit)
 - [Key features](#key-features)
-- [Supported ciphers & encodings](#supported-ciphers)
+- [Supported ciphers](#supported-ciphers)
 
 ## What is CipherKit?
 CipherKit is a desktop application that makes encoding and decoding text fast and approachable. It focuses on usability and teaching: each cipher includes clear parameter inputs (keys, shifts, alphabets) and short descriptions so you can understand how the transformation works.
