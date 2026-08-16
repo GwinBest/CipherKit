@@ -1,5 +1,9 @@
 # CipherKit
 
+[![C](https://img.shields.io/badge/Language-C-blue)](https://github.com/GwinBest/CipherKit)
+[![MSBuild](https://img.shields.io/badge/MSBuild-enabled-brightgreen)](https://github.com/GwinBest/CipherKit/blob/main/CipherKit.vcxproj)
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey)](https://github.com/GwinBest/CipherKit/blob/main/LICENSE.txt)
+
 Desktop encoder/decoder for the most popular ciphers — an easy, tool to experiment with and learn classical and common ciphers.
 
 ## Table of contents
